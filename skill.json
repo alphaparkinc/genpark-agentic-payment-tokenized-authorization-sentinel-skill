@@ -1,0 +1,52 @@
+{
+  "name": "genpark-agentic-payment-tokenized-authorization-sentinel-skill",
+  "version": "1.0.0",
+  "description": "Cryptographic Agent Delegated Payment Authorization & Tokenized Checkout Sentinel (inspired by Mastercard Agent Connect, Stripe Agent Delegation, Visa Virtual Cards). Enforces spend limits, velocity thresholds, merchant whitelists, and ephemeral single-use tokens.",
+  "tools": [
+    {
+      "name": "authorize_agentic_payment",
+      "description": "Manage user-to-agent payment delegation mandates, generate ephemeral single-use cryptographic payment tokens, check velocity limits, and settle charges.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "create_delegation_mandate",
+              "generate_ephemeral_token",
+              "validate_transaction_velocity",
+              "settle_delegated_charge"
+            ],
+            "description": "Payment authorization action."
+          },
+          "max_spend_usd": {
+            "type": "number",
+            "description": "Maximum spending ceiling for this mandate."
+          },
+          "allowed_merchants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Merchant whitelist."
+          },
+          "mandate_id": {
+            "type": "string"
+          },
+          "charge_amount_usd": {
+            "type": "number"
+          },
+          "merchant_name": {
+            "type": "string"
+          },
+          "payment_token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  ]
+}
